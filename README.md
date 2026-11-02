@@ -47,7 +47,7 @@ life-dashboard/
     │   └── main.tsx          # Punto de entrada de la aplicación
     ├── package.json          # Dependencias y scripts de Node.js
     └── tailwind.config.js    # Configuración del sistema de estilos
-
+```
 ---
 
 ## 🚀 Instalación y Puesta en Marcha
@@ -58,6 +58,7 @@ Sigue estos pasos para ejecutar el proyecto en local:
 ```bash
 git clone git@github.com:TU_USUARIO/life-dashboard.git
 cd life-dashboard
+```
 
 ### 2. Configurar y arrancar el Backend (FastAPI)
 Abre una terminal y ejecuta:
@@ -72,6 +73,7 @@ python -c "from app.database import create_db_and_tables; create_db_and_tables()
 
 # Iniciar el servidor Uvicorn con recarga en caliente
 python -m uvicorn app.main:app --reload
+```
 
 ### 3. Configurar y arrancar el Frontend (React + Vite)
 Abre una segunda terminal y ejecuta:
@@ -79,3 +81,4 @@ Abre una segunda terminal y ejecuta:
 cd frontend
 npm install --legacy-peer-deps
 npm run dev
+```
