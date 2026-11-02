@@ -1,6 +1,7 @@
+cat << 'EOF' > README.md
 # 🚀 Life Dashboard — Productividad & Finanzas Personales
 
-Aplicación web full-stack diseñada como panel integral de productividad personal, seguimiento de hábitos y control de finanzas con analítica visual en tiempo real.
+Aplicación web full-stack diseñada como panel integral para la gestión de tareas inmediatas, seguimiento de hábitos diarios y control de finanzas personales con analítica visual en tiempo real.
 
 ---
 
@@ -8,26 +9,42 @@ Aplicación web full-stack diseñada como panel integral de productividad person
 
 - **Backend:** Python 3.12, FastAPI, SQLModel (ORM sobre SQLAlchemy), SQLite.
 - **Frontend:** React 18, TypeScript, Vite, Tailwind CSS, Recharts.
-- **Arquitectura:** API RESTful desacoplada, sincronización concurrente con `Promise.all` y renderizado defensivo de gráficos vectoriales.
+- **Arquitectura:** API RESTful desacoplada, sincronización concurrente con `Promise.all` y programación defensiva en componentes gráficos.
 
 ---
 
 ## ✨ Características Principales
 
-1. **Gestión de Foco y Tareas:** CRUD reactivo con alternancia de estado y persistencia inmediata.
-2. **Seguimiento de Hábitos & Algoritmo de Rachas:** 
-   - Relación 1 a N entre entidades (`Habit` y `HabitLog`).
-   - Algoritmo de cálculo de rachas consecutivas activas optimizado mediante conjuntos (`set`) en memoria con complejidad de búsqueda $\mathcal{O}(1)$.
+1. **Gestión de Foco y Tareas:**
+   - CRUD reactivo con persistencia instantánea en base de datos.
+   - Alternancia de estado (pendiente/completada) y eliminación sin recargas de página.
+
+2. **Seguimiento de Hábitos & Algoritmo de Rachas:**
+   - Modelado relacional 1 a N entre entidades (`Habit` y `HabitLog`) con claves foráneas e integridad referencial.
+   - Algoritmo de cómputo temporal para rachas de días consecutivos activos: verificación histórica optimizada mediante conjuntos (`set`) en Python, logrando tiempos de búsqueda promedio $\mathcal{O}(1)$.
+
 3. **Control Financiero & Analítica Visual:**
-   - Cálculo dinámico de balance neto, ingresos y gastos.
-   - Endpoint analítico para agregación de consumos por categoría.
-   - Gráfico circular interactivo y adaptable con **Recharts**.
+   - Procesamiento de métricas y KPIs en servidor: cálculo de ingresos, gastos y balance neto.
+   - Endpoint analítico (`/analytics/spending-by-category`) para agregación y desglose de gastos por categoría en memoria.
+   - Gráfico circular interactivo (*Donut Chart*) construido con **Recharts**, adaptado al diseño en modo oscuro y protegido contra caídas de renderizado (*runtime errors*).
 
 ---
 
-## 🚀 Instalación y Puesta en Marcha
+## 📂 Estructura del Proyecto
 
-### 1. Clonar el repositorio
-```bash
-git clone [https://github.com/TU_USUARIO/life-dashboard.git](https://github.com/TU_USUARIO/life-dashboard.git)
-cd life-dashboard
+```text
+life-dashboard/
+├── backend/
+│   ├── app/
+│   │   ├── database.py       # Configuración del motor SQLite y sesiones
+│   │   ├── models.py         # Definición de esquemas SQLModel / Pydantic
+│   │   └── main.py           # Endpoints de la API REST y lógica analítica
+│   └── requirements.txt      # Dependencias fijadas de Python
+└── frontend/
+    ├── src/
+    │   ├── components/
+    │   │   └── SpendingChart.tsx  # Componente gráfico con Recharts
+    │   ├── App.tsx           # Orquestación de vistas y estados de React
+    │   └── main.tsx          # Punto de entrada de la aplicación
+    ├── package.json          # Dependencias y scripts de Node.js
+    └── tailwind.config.js    # Configuración del sistema de estilos
