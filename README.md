@@ -1,4 +1,3 @@
-cat << 'EOF' > README.md
 # 🚀 Life Dashboard — Productividad & Finanzas Personales
 
 Aplicación web full-stack diseñada como panel integral para la gestión de tareas inmediatas, seguimiento de hábitos diarios y control de finanzas personales con analítica visual en tiempo real.
@@ -48,3 +47,35 @@ life-dashboard/
     │   └── main.tsx          # Punto de entrada de la aplicación
     ├── package.json          # Dependencias y scripts de Node.js
     └── tailwind.config.js    # Configuración del sistema de estilos
+
+---
+
+## 🚀 Instalación y Puesta en Marcha
+
+Sigue estos pasos para ejecutar el proyecto en local:
+
+### 1. Clonar el repositorio
+```bash
+git clone git@github.com:TU_USUARIO/life-dashboard.git
+cd life-dashboard
+
+### 2. Configurar y arrancar el Backend (FastAPI)
+Abre una terminal y ejecuta:
+```bash
+cd backend
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+# Inicializar las tablas relacionales en SQLite
+python -c "from app.database import create_db_and_tables; create_db_and_tables()"
+
+# Iniciar el servidor Uvicorn con recarga en caliente
+python -m uvicorn app.main:app --reload
+
+### 3. Configurar y arrancar el Frontend (React + Vite)
+Abre una segunda terminal y ejecuta:
+```bash
+cd frontend
+npm install --legacy-peer-deps
+npm run dev
